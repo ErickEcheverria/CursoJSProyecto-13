@@ -1,24 +1,30 @@
-import { API } from './api.js';
 import * as UI from './interfaz.js';
+import  API  from './api.js';
 
-UI.formularioBuscar.addEventListener('submit', (e) => {
+UI.formularioBuscar.addEventListener('submit', buscarCancion);
+
+function buscarCancion(e){
      e.preventDefault();
 
-     // Obtener datos del formulario
-     const artista = document.querySelector('#artista').value,
-           cancion = document.querySelector('#cancion').value;
+     //Obtener datos del formulario
+     const artista = document.querySelector('#artista').value;
+     const cancion = document.querySelector('#cancion').value;
 
-     if(artista === '' || cancion === '') {
-          // El usuario deja los campos vacios, mostrar error
-          UI.divMensajes.innerHTML = 'Error... Todos los campos son obligatorios';
+     if(artista === '' || cancion === ''){
+          
+          UI.divMensajes.textContent = 'Todos los campos son Obligatorios';
           UI.divMensajes.classList.add('error');
+
           setTimeout(() => {
-               UI.divMensajes.innerHTML = '';
+               UI.divMensajes.textContent = '';
                UI.divMensajes.classList.remove('error');
           }, 3000);
-     } else {
-          // El formulario esta completo, realizar consulta a la API
-          new API(artista, cancion);
-     }
 
-});
+          return;
+     }
+     
+     // Consultar API
+
+     const busqueda = new API(artista,cancion);
+     busqueda.consultarAPI();
+}
