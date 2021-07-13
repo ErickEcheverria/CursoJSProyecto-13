@@ -42,9 +42,6 @@ class API {
 }
 
 function mostrarSpinner(){
-     while(resultado.firstChild){
-         resultado.removeChild(resultado.firstChild);
-     }
  
      const spinner = document.createElement('div');
      spinner.classList.add('spinner');
@@ -61,7 +58,7 @@ function mostrarSpinner(){
      <div class="sk-cube sk-cube9"></div>
      `;
  
-     resultado.appendChild(spinner);
+     UI.divResultado.appendChild(spinner);
  }
 
 export default API;
