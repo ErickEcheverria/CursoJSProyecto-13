@@ -11,8 +11,10 @@ class API {
           const url = `https://api.lyrics.ovh/v1/${this.artista}/${this.cancion}`;
 
           // Spinner
+          mostrarSpinner();
 
-          fetch(url)
+          setTimeout(() => {
+               fetch(url)
                .then( respuesta => respuesta.json())
                .then (resultado => {
 
@@ -32,8 +34,34 @@ class API {
                     }
                     
                })
+          }, 5000);
+
+          
 
      }
 }
+
+function mostrarSpinner(){
+     while(resultado.firstChild){
+         resultado.removeChild(resultado.firstChild);
+     }
+ 
+     const spinner = document.createElement('div');
+     spinner.classList.add('spinner');
+ 
+     spinner.innerHTML = `
+     <div class="sk-cube sk-cube1"></div>
+     <div class="sk-cube sk-cube2"></div>
+     <div class="sk-cube sk-cube3"></div>
+     <div class="sk-cube sk-cube4"></div>
+     <div class="sk-cube sk-cube5"></div>
+     <div class="sk-cube sk-cube6"></div>
+     <div class="sk-cube sk-cube7"></div>
+     <div class="sk-cube sk-cube8"></div>
+     <div class="sk-cube sk-cube9"></div>
+     `;
+ 
+     resultado.appendChild(spinner);
+ }
 
 export default API;
